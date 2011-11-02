@@ -361,7 +361,7 @@ qq.FileUploaderBasic.prototype = {
     _onComplete: function(id, fileName, result){
         this._filesInProgress--;                 
         if (result.error){
-            this._options.showMessage(result.error);
+            this._options.showMessage(result.error, 'uploadError');
         }             
     },
     _onCancel: function(id, fileName){
@@ -438,7 +438,7 @@ qq.FileUploaderBasic.prototype = {
         r('{sizeLimit}', this._formatSize(this._options.sizeLimit));
         r('{minSizeLimit}', this._formatSize(this._options.minSizeLimit));
         
-        this._options.showMessage(message);                
+        this._options.showMessage(message, code);                
     },
     _formatFileName: function(name){
         if (name.length > 33){
@@ -817,7 +817,7 @@ qq.UploadButton.prototype = {
             cursor: 'pointer',
             opacity: 0
         });
-        
+
         this._element.appendChild(input);
 
         var self = this;
